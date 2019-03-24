@@ -28,8 +28,10 @@
     <button class="mb-3" (click)="load()">Load Todos</button>
     <div *ngIf="todos$ | async as todos">
       Todos:
-      <ul>
-        <li *ngFor="let todo of todos"><u>{{todo.name}}</u>: <small>{{todo.task}}</small></li>
+      <ul id="todos">
+        <li *ngFor="let todo of todos" id="{{'todo-' + todo.name}}">
+          <u>{{todo.name}}</u>: <small>{{todo.task}}</small>
+        </li>
       </ul>
     </div>
   </div>

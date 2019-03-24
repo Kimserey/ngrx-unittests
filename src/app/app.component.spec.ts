@@ -43,17 +43,38 @@ describe('AppComponent', () => {
     // subscribe the observables.
     fixture.detectChanges();
     
-    const req =
-      httpTestingController.expectOne('/api/todos');
+    // Test todos.
+    const todos = [
+      { name: "0", task: "todo 0" },
+      { name: "1", task: "todo 1" },
+      { name: "2", task: "todo 2" }
+    ];
 
-    expect(req.request.method).toEqual('GET');
+    // Handle mocked GET request.
+    const req = httpTestingController.expectOne("/api/todos");
+    expect(req.request.method).toEqual("GET");
+    req.flush(todos);
+    
+    // Update bindings with newly retrieved todos.
+    fixture.detectChanges();
 
-    req.flush([
-      { name: '0', task: 'todo 0' },
-      { name: '1', task: 'todo 1' },
-      { name: '2', task: 'todo 2' }
-    ]);
+    // Get a single todo element within the list.
+    const todoEl = (key: string) => {
+      return fixture.debugElement
+        .nativeElement
+        .querySelector(`#todo-${key}`);
+    }
 
+    // Get the todos list HTML element.
+    const todosEl = 
+      fixture.debugElement
+        .nativeElement
+        .querySelector(`#todos`);
+
+    expect(todosEl.children.length).toBe(3);
+    expect(todoEl(todos[0].name).textContent).toBe("0: todo 0");
+    expect(todoEl(todos[1].name).textContent).toBe("1: todo 1");
+    expect(todoEl(todos[2].name).textContent).toBe("2: todo 2");
 
     httpTestingController.verify();
   });

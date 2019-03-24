@@ -72,9 +72,9 @@ describe('AppComponent', () => {
         .querySelector(`#todos`);
 
     expect(todosEl.children.length).toBe(3);
-    expect(todoEl(todos[0].name).textContent).toBe("0: todo 0");
-    expect(todoEl(todos[1].name).textContent).toBe("1: todo 1");
-    expect(todoEl(todos[2].name).textContent).toBe("2: todo 2");
+    todos.forEach(todo => {
+      expect(todoEl(todo.name).textContent).toBe(`${todo.name}: ${todo.task}`);
+    });
 
     httpTestingController.verify();
   });

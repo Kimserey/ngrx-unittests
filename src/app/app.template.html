@@ -1,0 +1,14 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+</div>
+
+<div *ngIf="todos$ | async as todos">
+  Todos:
+  <ul>
+    <li *ngFor="let todo of todos"><u>{{todo.name}}</u>: <small>{{todo.task}}</small></li>
+  </ul>
+</div>
+
+<router-outlet></router-outlet>

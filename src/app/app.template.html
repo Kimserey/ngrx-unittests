@@ -4,6 +4,22 @@
   </h1>
 </div>
 
+<button (click)="click()">Load</button>
+
+<form (ngSubmit)="submit()">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" type="text" placeholder="Name" />
+  </div>
+  <div>
+    <label for="task">Task</label>
+    <input id="task" type="text" placeholder="Task" />
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+
 <div *ngIf="todos$ | async as todos">
   Todos:
   <ul>

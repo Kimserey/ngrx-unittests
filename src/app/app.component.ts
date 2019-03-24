@@ -12,7 +12,13 @@ export class AppComponent {
   title = 'frontend-unittests';
   todos$: Observable<Todo[]>;
   
-  constructor(service: AppService) {
-    this.todos$ = service.getAll();
+  click() {
+    this.todos$ = this.service.getAll();
   }
+
+  submit() {
+    console.log("test");
+  }
+
+  constructor(private service: AppService) { }
 }

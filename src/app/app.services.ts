@@ -10,5 +10,11 @@ export class AppService {
     return this.http.get<Todo[]>('/api/todos');
   }
 
+  post(name: string, task: string) {
+    return this.http.post('/api/todos', {
+      name, task
+    });
+  }
+
   constructor(private http: HttpClient) { }
 }

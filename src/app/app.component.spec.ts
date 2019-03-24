@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -38,18 +38,13 @@ describe('AppComponent', () => {
   });
 
   it('should execute a first load of the todo list', () => { 
-    const fixture = 
-      TestBed.createComponent(AppComponent);
-    
-    const app = 
-      fixture.debugElement.componentInstance;
-
-    app.ngOnInit();
-
+    const fixture = TestBed.createComponent(AppComponent);
+    // .detectChanges() is used to execute the bindings and
+    // subscribe the observables.
     fixture.detectChanges();
-
+    
     const req =
-      httpTestingController.expectOne('/api/todo');
+      httpTestingController.expectOne('/api/todos');
 
     expect(req.request.method).toEqual('GET');
 
@@ -58,6 +53,7 @@ describe('AppComponent', () => {
       { name: '1', task: 'todo 1' },
       { name: '2', task: 'todo 2' }
     ]);
+
 
     httpTestingController.verify();
   });

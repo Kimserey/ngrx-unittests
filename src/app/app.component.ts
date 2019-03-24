@@ -10,12 +10,12 @@ import { Todo } from './models';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  title = 'frontend-unittests';
+  title = 'Frontend Unit Tests';
   todos$: Observable<Todo[]>;
   notifications: string[];
   form: FormGroup;
 
-  click() {
+  load() {
     this.todos$ = this.service.getAll();
   }
 
@@ -36,6 +36,8 @@ export class AppComponent implements OnInit {
     });
 
     this.notifications = [];
+
+    this.load();
   }
 
   get name() {

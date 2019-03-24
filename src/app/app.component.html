@@ -1,5 +1,5 @@
 <div style="text-align:center">
-  <h1>{{title}}!</h1>
+  <h1>{{title}}</h1>
 </div>
 
 <div class="container">
@@ -25,7 +25,7 @@
   </div>
 
   <div class="my-3 p-3 border">
-    <button class="mb-3" (click)="click()">Load Todos</button>
+    <button class="mb-3" (click)="load()">Load Todos</button>
     <div *ngIf="todos$ | async as todos">
       Todos:
       <ul>

@@ -19,10 +19,6 @@ export class AppComponent implements OnInit {
     this.todos$ = this.service.getAll();
   }
 
-  test() {
-    this.notifications[0] = "hello?";
-  }
-
   submit() {
     this.service.post(
       this.name.value,
